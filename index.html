@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>Kino-Area</title>
+</head>
+
+<body>
+    <div class="total-container">
+
+        <header></header>
+
+        <main class="container">
+
+            <section class="now-playing">
+                <div class="section-name">
+                    <span>Сейчас в кино</span>
+                    <div class="line"></div>
+                    <nav class="genres">
+                        <a href="#">Все</a>
+                        <a href="#">Боевик</a>
+                        <a href="#">Приключения</a>
+                        <a href="#">Комедии</a>
+                        <a href="#">Фантастика</a>
+                        <a href="#">Триллеры</a>
+                        <a href="#">Драма</a>
+                    </nav>
+                </div>
+                <div class="movie-container"></div>
+                <button type="button" class="see_more">Все новинки</button>
+            </section>
+
+            <section class="new-trailers">
+                <div class="section-name">
+                    <span>Новые трейлеры</span>
+                    <button>
+                        <span>Вcе трейлеры</span>
+                        <img src="/icons/right-arrow.svg">
+                    </button>
+                </div>
+                <div class="main-trailer">
+                    <div class="trailer-place">
+                        <iframe src="" allow="autoplay" class="video"></iframe>
+                    </div>
+                    <div class="trailer-data">
+                        <span class="trailer-title">Unknown</span>
+                        <div class="like-btns">
+                            <div class="like-place">
+                                <button class="like">
+                                    <img src="/icons/like.svg">
+                                </button>
+                                <span class="like-counter">10000</span>
+                            </div>
+                            <div class="dislike-place">
+                                <button class="dislike">
+                                    <img src="/icons/dislike.svg">
+                                </button>
+                                <span class="dislike-counter">10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="other-trailers"></div>
+            </section>
+
+            <section class="popular-movies">
+                <div class="section-name">
+                    <span>Популярные фильмы</span>
+                    <div class="line"></div>
+                    <nav class="years">
+                        <a href="#">Всё время</a>
+                        <a href="#">2024</a>
+                        <a href="#">2023</a>
+                        <a href="#">2022</a>
+                        <a href="#">2021</a>
+                        <a href="#">2020</a>
+                    </nav>
+                </div>
+                <div class="movie-container"></div>
+                <div class="slider-pages">
+                    <button>
+                        <img src="/icons/slider-arrow-left.svg">
+                    </button>
+                    <span>1/15</span>
+                    <button>
+                        <img src="/icons/slider-arrow-right.svg">
+                    </button>
+                </div>
+            </section>
+
+            <section class="popular-actors">
+                <div class="section-name">
+                    <span>Популярные персоны</span>
+                    <nav class="times">
+                        <a href="#">За год</a>
+                        <a href="#">За месяц</a>
+                        <a href="#">За неделю</a>
+                    </nav>
+                </div>
+                <div class="popularities">
+                    <div class="most-populars"></div>
+                    <div class="other-populars"></div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script type="module" src="/index.js"></script>
+
+</body>
+
+</html>
