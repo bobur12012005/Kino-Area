@@ -25,7 +25,7 @@ export async function getMovieTrailers(movieId) {
 
     if (trailers.length > 0) {
         const iframe = document.querySelector('.trailer-place iframe')
-        iframe.src = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1`
+        iframe.src = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=0`
     } else {
         console.log('Трейлеры не найдены')
     }

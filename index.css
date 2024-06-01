@@ -605,17 +605,20 @@ body {
                         height: 380px;
                         background-color: #1B2133;
                         border-radius: 10px;
-                        padding-inline: 15px;
-                        margin-top: 20px;
+                        padding: 20px;
                         overflow-y: scroll;
                         scrollbar-width: none;
+                        display: flex;
+                        flex-direction: column;
 
                         .dataPlace {
                             width: 100%;
+                            min-height: 70px;
                             display: flex;
                             flex-direction: row;
                             justify-content: space-between;
-                            height: 70px;
+                            align-items: center;
+                            border-bottom: 2px solid #283149;
 
                             .data {
                                 display: flex;

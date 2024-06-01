@@ -17,7 +17,6 @@ createHeader(header)
 axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${apiKey}`)
     .then(res => {
         nowPlayingReload(res.data.results.splice(0, 8), currentMoviesContainer)
-        // console.log(res.data.results)
     })
 
 seeMore_btn.onclick = () => {
