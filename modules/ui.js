@@ -246,3 +246,30 @@ export function reloadOtherPopularities(arr, place) {
         data.append(name, age)
     }
 }
+
+function reloadUpcoming(arr, place) {
+    place.innerHTML = ''
+
+    for (let item of arr) {
+        let movie = document.createElement('div')
+        let img_place = document.createElement('div')
+        let img = documuent.createElement('img')
+        let details = document.createElement('div')
+        let title = document.createElement('span')
+        let upomingDate = document.createElement('span')
+
+        movie.classList.add('movie')
+        img_place.classList.add('img_place')
+        details.classList.add('details')
+        title.classList.add('title')
+        upomingDate.classList.add('upomingDate')
+
+        title.innerHTML = ''
+        upomingDate.innerHTML = ''
+
+        place.append(movie)
+        movie.append(img_place, details)
+        img_place.append(img)
+        details.append(title, upomingDate)
+    }
+}

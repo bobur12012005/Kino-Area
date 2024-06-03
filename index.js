@@ -45,7 +45,7 @@ axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&
         reloadTrailers(res.data.results, newTrailersContainer)
     })
 
-axios.get(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=${apiKey}`)
+axios.get(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=${apiKey}`)
     .then(res => {
         reloadPopularMovies(res.data.results.splice(16), popularMovieContainer)
     })
