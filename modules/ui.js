@@ -1,4 +1,5 @@
 import axios from "axios"
+import "./ui-css/header.css"
 
 let apiKey = import.meta.env.VITE_API_KEY
 
@@ -97,8 +98,9 @@ export async function nowPlayingReload(arr, place) {
 
     for (let item of arr) {
         let genres = await getGenres(item.genre_ids)
+        let id = location.search.split('=').at(-1)
 
-        let movie = document.createElement('div')
+        let movie = document.createElement('a')
         let img_place = document.createElement('div')
         let rating = document.createElement('span')
         let details = document.createElement('div')
@@ -115,6 +117,8 @@ export async function nowPlayingReload(arr, place) {
         rating.innerHTML = item.vote_average
         title.innerHTML = item.original_title
         genre.innerHTML = genres[0] || 'Unknown'
+
+        movie.href = `/pages/movie-page/index.html?id=${item.id}`
 
         img_place.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
 
@@ -244,32 +248,5 @@ export function reloadOtherPopularities(arr, place) {
         place.append(dataPlace)
         dataPlace.append(data, personPlace)
         data.append(name, age)
-    }
-}
-
-function reloadUpcoming(arr, place) {
-    place.innerHTML = ''
-
-    for (let item of arr) {
-        let movie = document.createElement('div')
-        let img_place = document.createElement('div')
-        let img = documuent.createElement('img')
-        let details = document.createElement('div')
-        let title = document.createElement('span')
-        let upomingDate = document.createElement('span')
-
-        movie.classList.add('movie')
-        img_place.classList.add('img_place')
-        details.classList.add('details')
-        title.classList.add('title')
-        upomingDate.classList.add('upomingDate')
-
-        title.innerHTML = ''
-        upomingDate.innerHTML = ''
-
-        place.append(movie)
-        movie.append(img_place, details)
-        img_place.append(img)
-        details.append(title, upomingDate)
     }
 }
