@@ -49,6 +49,8 @@ body {
             .main-data {
                 display: flex;
                 flex-direction: row;
+                gap: 50px;
+                align-items: center;
 
                 .poster-side {
                     display: flex;
@@ -57,13 +59,109 @@ body {
 
                     .movie-poster {
                         border-radius: 10px;
+                        width: 300px;
+                    }
+
+                    .likes {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+
+                        .like,
+                        .dislike {
+                            width: 50px;
+                            height: 50px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background: #1B2133;
+                            border-radius: 10px;
+                        }
+
+                        .waitedBy {
+                            width: calc(100% - 180px);
+                            height: 50px;
+                            background: #1B2133;
+                            border-radius: 10px;
+
+                            div {
+                                height: 100%;
+                                width: 80%;
+                                background: #2E6125;
+                                border-radius: 10px;
+                            }
+                        }
+
+                        .favorite {
+                            width: 50px;
+                            height: 50px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background: #1B2133;
+                            border-radius: 10px;
+                        }
                     }
                 }
 
-                .name-side {}
+                .name-side {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    .movie-title {
+                        color: white;
+                        font-size: 55px;
+                        font-weight: 900;
+                    }
+
+                    .ratings {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 30px;
+                        color: white;
+
+                        .kinoarea,
+                        .imdb {
+                            display: flex;
+                            flex-direction: column;
+
+                            strong {
+                                font-weight: 700;
+                                font-size: 15px;
+                            }
+
+                            span {
+                                font-weight: 300;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+
+                    .description {
+                        font-size: 20px;
+                        font-weight: 600;
+                        color: white;
+                    }
+
+                    .watch-trailer {
+                        width: 260px;
+                        height: 70px;
+                        border-radius: 10px;
+                        border: 2px solid #FFFFFF;
+                        gap: 10px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        color: white;
+                        font-size: 18px;
+                        font-weight: 700;
+                        justify-content: center;
+                    }
+                }
             }
 
-            .other-data {}
+            /* .other-data {} */
         }
     }
 }
