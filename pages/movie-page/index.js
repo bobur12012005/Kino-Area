@@ -1,6 +1,5 @@
 import axios from "axios"
 import { createHeader } from "../../modules/ui.js"
-import { Chart } from "chart.js"
 
 let apiKey = import.meta.env.VITE_API_KEY
 

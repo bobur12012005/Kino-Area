@@ -98,7 +98,6 @@ export async function nowPlayingReload(arr, place) {
 
     for (let item of arr) {
         let genres = await getGenres(item.genre_ids)
-        let id = location.search.split('=').at(-1)
 
         let movie = document.createElement('a')
         let img_place = document.createElement('div')
@@ -200,7 +199,7 @@ export function reloadTwoPopularities(arr, place) {
     let number = 1
 
     for (let item of arr) {
-        let dataPlace = document.createElement('div')
+        let dataPlace = document.createElement('a')
         let personPlace = document.createElement('span')
         let otherData = document.createElement('div')
         let name = document.createElement('span')
@@ -215,6 +214,8 @@ export function reloadTwoPopularities(arr, place) {
         personPlace.innerHTML = number++ + '-место'
         name.innerHTML = item.name
         age.innerHTML = '30 лет'
+
+        dataPlace.href = `/pages/actor-page/index.html?id=${item.id}`
 
         dataPlace.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.profile_path})`
 
