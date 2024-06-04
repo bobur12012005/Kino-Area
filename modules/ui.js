@@ -1,11 +1,11 @@
 import axios from "axios"
 import "./ui-css/header.css"
 
-let apiKey = import.meta.env.VITE_API_KEY
+const apiKey = import.meta.env.VITE_API_KEY
 
 let mainTrailerTitle = document.querySelector('.trailer-title')
 
-async function getGenres(genreIds) {
+export async function getGenres(genreIds) {
     let response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`);
     let allGenres = response.data.genres
 
@@ -93,7 +93,7 @@ export function createHeader(place) {
     search_btn.append(search_icon)
 }
 
-export async function nowPlayingReload(arr, place) {
+export async function movieReload(arr, place) {
     place.innerHTML = ''
 
     for (let item of arr) {
@@ -161,39 +161,6 @@ export function reloadTrailers(arr, place) {
     }
 }
 
-export async function reloadPopularMovies(arr, place) {
-    place.innerHTML = ''
-
-    for (let item of arr) {
-        let genres = await getGenres(item.genre_ids)
-
-        let movie = document.createElement('div')
-        let img_place = document.createElement('div')
-        let rating = document.createElement('span')
-        let details = document.createElement('div')
-        let title = document.createElement('span')
-        let genre = document.createElement('span')
-
-        movie.classList.add('movie')
-        img_place.classList.add('img_place')
-        rating.classList.add('rating')
-        details.classList.add('details')
-        title.classList.add('title')
-        genre.classList.add('genre')
-
-        rating.innerHTML = item.vote_average
-        title.innerHTML = item.original_title
-        genre.innerHTML = genres || 'Unknown'
-
-        img_place.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.poster_path})`
-
-        place.append(movie)
-        movie.append(img_place, details)
-        img_place.append(rating)
-        details.append(title, genre)
-    }
-}
-
 export function reloadTwoPopularities(arr, place) {
     place.innerHTML = ''
     let number = 1
@@ -213,7 +180,7 @@ export function reloadTwoPopularities(arr, place) {
 
         personPlace.innerHTML = number++ + '-место'
         name.innerHTML = item.name
-        age.innerHTML = '30 лет'
+        age.innerHTML = '00 лет'
 
         dataPlace.href = `/pages/actor-page/index.html?id=${item.id}`
 
@@ -230,7 +197,7 @@ export function reloadOtherPopularities(arr, place) {
     let number = 3
 
     for (let item of arr) {
-        let dataPlace = document.createElement('div')
+        let dataPlace = document.createElement('a')
         let data = document.createElement('div')
         let name = document.createElement('span')
         let age = document.createElement('span')
@@ -245,6 +212,8 @@ export function reloadOtherPopularities(arr, place) {
         personPlace.innerHTML = number++ + '-место'
         name.innerHTML = item.name
         age.innerHTML = '30 лет'
+
+        dataPlace.href = `/pages/actor-page/index.html?id=${item.id}`
 
         place.append(dataPlace)
         dataPlace.append(data, personPlace)

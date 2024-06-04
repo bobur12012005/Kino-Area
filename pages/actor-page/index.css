@@ -20,7 +20,7 @@ body {
     background-size: cover;
 
     .total-container {
-        background-color: #1e2536;
+        background-color: #242c40;
         width: 100%;
         height: 100vh;
         overflow-x: hidden;
@@ -51,6 +51,8 @@ body {
                 .actor-img {
                     width: 350px;
                     height: 500px;
+                    border-radius: 10px;
+                    overflow: hidden;
 
                     img {
                         width: 100%;
@@ -62,6 +64,7 @@ body {
                 .actor-data {
                     display: flex;
                     flex-direction: column;
+                    justify-content: space-between;
                     gap: 20px;
 
                     .way-to-actor {
@@ -69,7 +72,7 @@ body {
                         align-items: center;
 
                         p {
-                            color: #3f5072;
+                            color: #4a5f87;
 
                             span {
                                 color: white;
@@ -77,37 +80,69 @@ body {
                         }
                     }
 
-                    .name-place {
+                    .data-place {
                         display: flex;
                         flex-direction: column;
+                        gap: 35px;
 
-                        .name-ru {
-                            font-size: 55px;
-                            font-weight: 900;
-                            color: white;
+                        .name-place {
+                            display: flex;
+                            flex-direction: column;
+
+                            .name-ru {
+                                font-size: 55px;
+                                font-weight: 900;
+                                color: white;
+                            }
+
+                            .name-en {
+                                font-size: 25px;
+                                font-weight: 600;
+                                color: white;
+                            }
                         }
 
-                        .name-en {
-                            font-size: 25px;
-                            font-weight: 600;
-                            color: white;
+                        .other-data {
+                            display: flex;
+                            flex-direction: row;
+
+                            .data-text {
+                                width: 250px;
+                                display: flex;
+                                flex-direction: column;
+                                color: white;
+                                gap: 5px;
+                            }
+
+                            .information {
+                                width: 200px;
+                                display: flex;
+                                flex-direction: column;
+                                color: #F2F60F;
+                                gap: 5px;
+                                text-decoration: underline #F2F60F;
+                            }
                         }
                     }
 
-                    .other-data {
+                    .favorites {
                         display: flex;
                         flex-direction: row;
+                        align-items: center;
+                        gap: 10px;
 
-                        .data-text {
-                            width: 250px;
+                        button {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 10px;
+                            background: #1B2133;
                             display: flex;
-                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
                         }
 
-                        .information {
-                            width: 200px;
-                            display: flex;
-                            flex-direction: column;
+                        p {
+                            color: white;
                         }
                     }
                 }
