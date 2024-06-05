@@ -6,7 +6,7 @@ const apiKey = import.meta.env.VITE_API_KEY
 let mainTrailerTitle = document.querySelector('.trailer-title')
 
 export async function getGenres(genreIds) {
-    let response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`);
+    let response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=ru-RU`);
     let allGenres = response.data.genres
 
     return genreIds.map(id => {
@@ -17,7 +17,7 @@ export async function getGenres(genreIds) {
 
 export async function getMovieTrailers(movieId) {
     const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=ru-RU`
     );
 
     const trailers = response.data.results.filter(
@@ -114,7 +114,7 @@ export async function movieReload(arr, place) {
         genre.classList.add('genre')
 
         rating.innerHTML = item.vote_average
-        title.innerHTML = item.original_title
+        title.innerHTML = item.title
         genre.innerHTML = genres[0] || 'Unknown'
 
         movie.href = `/pages/movie-page/index.html?id=${item.id}`
@@ -144,7 +144,7 @@ export function reloadTrailers(arr, place) {
         title.classList.add('title')
         play_icon.classList.add('play-icon')
 
-        title.innerHTML = item.original_title
+        title.innerHTML = item.title
 
         img.src = `https://image.tmdb.org/t/p/original${item.backdrop_path}`
         play_icon.src = '/icons/play.svg'
@@ -155,44 +155,13 @@ export function reloadTrailers(arr, place) {
 
         play_icon.onclick = () => {
             const movieId = item.id
-            mainTrailerTitle.innerHTML = item.original_title
+            mainTrailerTitle.innerHTML = item.title
             getMovieTrailers(movieId)
         }
     }
 }
 
-export function reloadTwoPopularities(arr, place) {
-    place.innerHTML = ''
-    let number = 1
-
-    for (let item of arr) {
-        let dataPlace = document.createElement('a')
-        let personPlace = document.createElement('span')
-        let otherData = document.createElement('div')
-        let name = document.createElement('span')
-        let age = document.createElement('span')
-
-        dataPlace.classList.add('dataPlace')
-        personPlace.classList.add('personPlace')
-        otherData.classList.add('otherData')
-        name.classList.add('name')
-        age.classList.add('age')
-
-        personPlace.innerHTML = number++ + '-место'
-        name.innerHTML = item.name
-        age.innerHTML = '00 лет'
-
-        dataPlace.href = `/pages/actor-page/index.html?id=${item.id}`
-
-        dataPlace.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${item.profile_path})`
-
-        place.append(dataPlace)
-        dataPlace.append(personPlace, otherData)
-        otherData.append(name, age)
-    }
-}
-
-export function reloadOtherPopularities(arr, place) {
+export function reloadPopularities(arr, place) {
     place.innerHTML = ''
     let number = 3
 
