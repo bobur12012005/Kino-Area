@@ -1,5 +1,5 @@
 import axios from "axios"
-import { createHeader, getGenres } from "../../modules/ui.js"
+import { createHeader, movieReload } from "../../modules/ui.js"
 
 let apiKey = import.meta.env.VITE_API_KEY
 let id = location.search.split('=').at(-1)
@@ -17,6 +17,14 @@ let birthplace = document.querySelector('.birthplace')
 let genres = document.querySelector('.genres')
 let movies = document.querySelector('.movies')
 let favorites = document.querySelector('.favorites p span')
+let knownMoviesContainer = document.querySelector('.known-movies-container')
+let image_1 = document.querySelector('.image_1 img')
+let image_2 = document.querySelector('.image_2 img')
+let image_3 = document.querySelector('.image_3 img')
+let image_4 = document.querySelector('.image_4 img')
+let image_5 = document.querySelector('.image_5 img')
+let image_6 = document.querySelector('.image_6 img')
+let images = document.querySelectorAll('.actor-images .item img')
 
 createHeader(header)
 
@@ -30,7 +38,31 @@ axios.get(`https://api.themoviedb.org/3/person/${id}?language=ru-RU&api_key=${ap
         birthplace.innerHTML = res.data.place_of_birth.split(',').at(-2) + ', ' + res.data.place_of_birth.split(',').at(-1)
     })
 
-axios.get(`https://api.themoviedb.org/3/person/${id}/combined_credits?language=ru-RU&api_key=${apiKey}`)
+axios.get(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=ru-RU&api_key=${apiKey}`)
     .then(res => {
         movies.innerHTML = res.data.cast.length + res.data.crew.length
     })
+
+axios.get(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=ru-RU&api_key=${apiKey}`)
+    .then(res => {
+        movieReload(res.data.cast.splice(0, 4), knownMoviesContainer)
+    })
+
+axios.get(`https://api.themoviedb.org/3/person/${id}/images?language=ru-RU&api_key=${apiKey}`)
+    .then(res => {
+        console.log(res.data)
+        image_1.src = `https://image.tmdb.org/t/p/original${res.data.profiles[1].file_path}`
+        image_2.src = `https://image.tmdb.org/t/p/original${res.data.profiles[2].file_path}`
+        image_3.src = `https://image.tmdb.org/t/p/original${res.data.profiles[3].file_path}`
+        image_4.src = `https://image.tmdb.org/t/p/original${res.data.profiles[4].file_path}`
+        image_5.src = `https://image.tmdb.org/t/p/original${res.data.profiles[5].file_path}`
+        image_6.src = `https://image.tmdb.org/t/p/original${res.data.profiles[6].file_path}`
+    })
+
+images.forEach(img => {
+    if (img.src === '') {
+        
+    } else {
+
+    }
+})

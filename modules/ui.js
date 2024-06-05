@@ -180,7 +180,7 @@ export function reloadPopularities(arr, place) {
 
         personPlace.innerHTML = number++ + '-место'
         name.innerHTML = item.name
-        age.innerHTML = '30 лет'
+        age.innerHTML = '00 лет'
 
         dataPlace.href = `/pages/actor-page/index.html?id=${item.id}`
 
