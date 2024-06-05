@@ -24,7 +24,6 @@ let image_3 = document.querySelector('.image_3 img')
 let image_4 = document.querySelector('.image_4 img')
 let image_5 = document.querySelector('.image_5 img')
 let image_6 = document.querySelector('.image_6 img')
-let images = document.querySelectorAll('.actor-images .item img')
 
 createHeader(header)
 
@@ -58,11 +57,3 @@ axios.get(`https://api.themoviedb.org/3/person/${id}/images?language=ru-RU&api_k
         image_5.src = `https://image.tmdb.org/t/p/original${res.data.profiles[5].file_path}`
         image_6.src = `https://image.tmdb.org/t/p/original${res.data.profiles[6].file_path}`
     })
-
-images.forEach(img => {
-    if (img.src === '') {
-        
-    } else {
-
-    }
-})

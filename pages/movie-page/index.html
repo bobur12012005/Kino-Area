@@ -35,28 +35,62 @@
                             </button>
                         </div>
                     </div>
-
                     <div class="name-side">
                         <span class="movie-title">Unknown</span>
-                        <div class="ratings">
-                            <div class="kinoarea">
-                                <strong>0</strong>
-                                <span>KinoArea</span>
+                        <div class="some-other">
+                            <div class="ratings">
+                                <div class="kinoarea">
+                                    <strong>0</strong>
+                                    <span>KinoArea</span>
+                                </div>
+                                <div class="imdb">
+                                    <strong>0</strong>
+                                    <span>Popularity</span>
+                                </div>
                             </div>
-                            <div class="imdb">
-                                <strong>0</strong>
-                                <span>Popularity</span>
-                            </div>
+                            <p class="description"></p>
                         </div>
-                        <p class="description"></p>
-                        <button class="watch-trailer">
-                            <img src="/icons/play-2.svg">
-                            <span>Смотреть трейлер</span>
-                        </button>
+                        <a href="#trailer-place">
+                            <button class="watch-trailer">
+                                <img src="/icons/play-2.svg">
+                                <span>Смотреть трейлер</span>
+                            </button>
+                        </a>
                     </div>
                 </div>
-
                 <div class="other-data"></div>
+            </section>
+
+            <section class="trailer-side">
+                <div class="section-name">
+                    <span>Трейлер фильма</span>
+                    <button>
+                        <span>Вcе трейлеры</span>
+                        <img src="/icons/right-arrow.svg">
+                    </button>
+                </div>
+                <div class="trailer">
+                    <div class="trailer-place" id="trailer-place">
+                        <iframe src="" allow="autoplay" class="video"></iframe>
+                    </div>
+                    <div class="trailer-data">
+                        <span class="trailer-title">Unknown</span>
+                        <div class="like-btns">
+                            <div class="like-place">
+                                <button class="like">
+                                    <img src="/icons/like.svg">
+                                </button>
+                                <span class="like-counter">0</span>
+                            </div>
+                            <div class="dislike-place">
+                                <button class="dislike">
+                                    <img src="/icons/dislike.svg">
+                                </button>
+                                <span class="dislike-counter">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
         </main>
