@@ -1,5 +1,7 @@
 import axios from "axios"
 import "./ui-css/header.css"
+import "./ui-css/movie.css"
+import "./ui-css/actor.css"
 
 const apiKey = import.meta.env.VITE_API_KEY
 
@@ -26,7 +28,7 @@ export async function getMovieTrailers(movieId) {
 
     if (trailers.length > 0) {
         const iframe = document.querySelector('iframe')
-        iframe.src = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=1`
+        iframe.src = `https://www.youtube.com/embed/${trailers[0].key}?autoplay=0`
     } else {
         console.log('Трейлеры не найдены')
     }
@@ -187,5 +189,36 @@ export function reloadPopularities(arr, place) {
         place.append(dataPlace)
         dataPlace.append(data, personPlace)
         data.append(name, age)
+    }
+}
+
+export function reloadMainCharacters(arr, place) {
+    place.innerHTML = ''
+
+    for (let item of arr) {
+        let actor_box = document.createElement('a')
+        let img_place = document.createElement('div')
+        let img = document.createElement('img')
+        let names = document.createElement('div')
+        let name_ru = document.createElement('span')
+        let name_en = document.createElement('span')
+
+        actor_box.classList.add('actor-box')
+        img_place.classList.add('img-place')
+        names.classList.add('names')
+        name_ru.classList.add('name-ru')
+        name_en.classList.add('name-en')
+
+        name_ru.innerHTML = item.data.name
+        name_en.innerHTML = item.data.also_known_as[0]
+
+        img.src = `https://image.tmdb.org/t/p/original${item.data.profile_path}`
+
+        actor_box.href = `/pages/actor-page/index.html?id=${item.data.id}`
+
+        place.append(actor_box)
+        actor_box.append(img_place, names)
+        img_place.append(img)
+        names.append(name_ru, name_en)
     }
 }

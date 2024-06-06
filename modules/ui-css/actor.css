@@ -1,0 +1,40 @@
+.actor-box {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+
+    .img-place {
+        width: 280px;
+        height: 280px;
+        border-radius: 10px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .names {
+        display: flex;
+        flex-direction: column;
+
+        .name-ru {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .name-en {
+            font-size: 14px;
+            font-weight: 400;
+            color: #FFFFFFB2;
+        }
+    }
+}
