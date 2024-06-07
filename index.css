@@ -19,7 +19,7 @@ body {
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
-    
+
     .total-container {
         background-color: #11151fd4;
         width: 100%;
@@ -80,6 +80,15 @@ body {
                             text-decoration: none;
                             font-size: 14px;
                             font-weight: 600;
+                            transition: all 0.2s ease;
+
+                            &:hover {
+                                transform: scale(1.1);
+                            }
+
+                            &.active_link {
+                                color: white;
+                            }
                         }
                     }
                 }
@@ -319,6 +328,15 @@ body {
                             text-decoration: none;
                             font-size: 14px;
                             font-weight: 600;
+                            transition: all 0.2s ease;
+
+                            &:hover {
+                                transform: scale(1.1);
+                            }
+
+                            &.active_link {
+                                color: white;
+                            }
                         }
                     }
                 }
@@ -379,6 +397,15 @@ body {
                             text-decoration: none;
                             font-size: 14px;
                             font-weight: 600;
+                            transition: all 0.2s ease;
+
+                            &:hover {
+                                transform: scale(1.1);
+                            }
+
+                            &.active_link {
+                                color: white;
+                            }
                         }
                     }
                 }

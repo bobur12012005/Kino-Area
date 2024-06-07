@@ -14,12 +14,51 @@ let actorDataPlace_1 = document.querySelector('.actorDataPlace_1')
 let actorDataPlace_2 = document.querySelector('.actorDataPlace_2')
 let actorDataPlace_1_name = document.querySelector('.actorDataPlace_1 .name')
 let actorDataPlace_2_name = document.querySelector('.actorDataPlace_2 .name')
+let genres = document.querySelectorAll('.now-playing .genres a')
 
 createHeader(header)
+
 
 axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&api_key=${apiKey}`)
     .then(res => {
         movieReload(res.data.results.splice(0, 8), currentMoviesContainer)
+    })
+
+genres.forEach(genre_html => {
+    genre_html.onclick = () => {
+        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genre_html.id}&language=ru-RU&page=1`)
+            .then(movieResponse => {
+                movieReload(movieResponse.data.results.splice(0, 8), currentMoviesContainer)
+            })
+    }
+})
+
+axios.get(`https://api.themoviedb.org/3/movie/top_rated?language=ru-RU&page=1&api_key=${apiKey}`)
+    .then(res => {
+        movieReload(res.data.results.splice(0, 4), popularMovieContainer)
+    })
+
+axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&api_key=${apiKey}`)
+    .then(res => {
+        const movieId = res.data.results[0].id
+        mainTrailerTitle.innerHTML = res.data.results[0].title
+        getMovieTrailers(movieId)
+        reloadTrailers(res.data.results, newTrailersContainer)
+    })
+
+axios.get(`https://api.themoviedb.org/3/person/popular?language=ru-RU&page=1&api_key=${apiKey}`)
+    .then(res => {
+        let firstActor = res.data.results[0]
+        let secondActor = res.data.results[1]
+
+        actorDataPlace_1.href = `/pages/actor-page/index.html?id=${firstActor.id}`
+        actorDataPlace_2.href = `/pages/actor-page/index.html?id=${secondActor.id}`
+        actorDataPlace_1.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${firstActor.profile_path})`
+        actorDataPlace_2.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${secondActor.profile_path})`
+        actorDataPlace_1_name.innerHTML = firstActor.name
+        actorDataPlace_2_name.innerHTML = secondActor.name
+
+        reloadPopularities(res.data.results.splice(3), popularitiesContainer)
     })
 
 seeMore_btn.onclick = () => {
@@ -39,31 +78,3 @@ seeMore_btn.onclick = () => {
         seeMore_btn.innerHTML = 'Все новинки'
     }
 }
-
-axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&api_key=${apiKey}`)
-    .then(res => {
-        const movieId = res.data.results[0].id
-        mainTrailerTitle.innerHTML = res.data.results[0].title
-        getMovieTrailers(movieId)
-        reloadTrailers(res.data.results, newTrailersContainer)
-    })
-
-axios.get(`https://api.themoviedb.org/3/movie/top_rated?language=ru-RU&page=1&api_key=${apiKey}`)
-    .then(res => {
-        movieReload(res.data.results.splice(0, 4), popularMovieContainer)
-    })
-
-axios.get(`https://api.themoviedb.org/3/person/popular?language=ru-RU&page=1&api_key=${apiKey}`)
-    .then(res => {
-        let firstActor = res.data.results[0]
-        let secondActor = res.data.results[1]
-
-        actorDataPlace_1.href = `/pages/actor-page/index.html?id=${firstActor.id}`
-        actorDataPlace_2.href = `/pages/actor-page/index.html?id=${secondActor.id}`
-        actorDataPlace_1.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${firstActor.profile_path})`
-        actorDataPlace_2.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${secondActor.profile_path})`
-        actorDataPlace_1_name.innerHTML = firstActor.name
-        actorDataPlace_2_name.innerHTML = secondActor.name
-
-        reloadPopularities(res.data.results.splice(3), popularitiesContainer)
-    })
