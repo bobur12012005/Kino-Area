@@ -15,9 +15,11 @@ let actorDataPlace_2 = document.querySelector('.actorDataPlace_2')
 let actorDataPlace_1_name = document.querySelector('.actorDataPlace_1 .name')
 let actorDataPlace_2_name = document.querySelector('.actorDataPlace_2 .name')
 let genres = document.querySelectorAll('.now-playing .genres a')
+let years = document.querySelectorAll('.popular-movies .years a')
+
+console.log(years)
 
 createHeader(header)
-
 
 axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&api_key=${apiKey}`)
     .then(res => {
@@ -26,19 +28,50 @@ axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&
 
 genres.forEach(genre_html => {
     genre_html.onclick = () => {
-        axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genre_html.id}&language=ru-RU&page=1`)
-            .then(movieResponse => {
-                movieReload(movieResponse.data.results.splice(0, 8), currentMoviesContainer)
-            })
+        genres.forEach(gnr => {
+            gnr.classList.remove('active_link')
+        })
+        genre_html.classList.add('active_link')
+        if (genre_html.id === 'all') {
+            axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&api_key=${apiKey}`)
+                .then(res => {
+                    movieReload(res.data.results.splice(0, 8), currentMoviesContainer)
+                })
+        } else {
+            axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genre_html.id}&language=ru-RU&page=1`)
+                .then(movieResponse => {
+                    movieReload(movieResponse.data.results.splice(0, 8), currentMoviesContainer)
+                })
+        }
     }
 })
 
-axios.get(`https://api.themoviedb.org/3/movie/top_rated?language=ru-RU&page=1&api_key=${apiKey}`)
+axios.get(`https://api.themoviedb.org/3/movie/top_rated?language=ru-RU&api_key=${apiKey}`)
     .then(res => {
         movieReload(res.data.results.splice(0, 4), popularMovieContainer)
     })
 
-axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&api_key=${apiKey}`)
+years.forEach(year => {
+    year.onclick = () => {
+        years.forEach(yr => {
+            yr.classList.remove('active_link')
+        })
+        year.classList.add('active_link')
+        if (year.id === 'all-time') {
+            axios.get(`https://api.themoviedb.org/3/movie/top_rated?language=ru-RU&api_key=${apiKey}`)
+                .then(res => {
+                    movieReload(res.data.results.splice(0, 4), popularMovieContainer)
+                })
+        } else {
+            axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=ru-RU&primary_release_year=${year.id}`)
+                .then(res => {
+                    movieReload(res.data.results.splice(0, 4), popularMovieContainer)
+                })
+        }
+    }
+})
+
+axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&api_key=${apiKey}`)
     .then(res => {
         const movieId = res.data.results[0].id
         mainTrailerTitle.innerHTML = res.data.results[0].title
@@ -46,7 +79,7 @@ axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&
         reloadTrailers(res.data.results, newTrailersContainer)
     })
 
-axios.get(`https://api.themoviedb.org/3/person/popular?language=ru-RU&page=1&api_key=${apiKey}`)
+axios.get(`https://api.themoviedb.org/3/person/popular?language=ru-RU&api_key=${apiKey}`)
     .then(res => {
         let firstActor = res.data.results[0]
         let secondActor = res.data.results[1]
@@ -65,13 +98,13 @@ seeMore_btn.onclick = () => {
     seeMore_btn.classList.toggle('active')
 
     if (seeMore_btn.classList.contains('active')) {
-        axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&api_key=${apiKey}`)
+        axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&api_key=${apiKey}`)
             .then(res => {
                 movieReload(res.data.results, currentMoviesContainer)
             })
         seeMore_btn.innerHTML = 'Первые 8'
     } else {
-        axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&api_key=${apiKey}`)
+        axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&api_key=${apiKey}`)
             .then(res => {
                 movieReload(res.data.results.splice(0, 8), currentMoviesContainer)
             })
