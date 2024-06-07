@@ -1,9 +1,10 @@
 import axios from "axios"
-import { createHeader, movieReload, reloadTrailers, reloadPopularities, getMovieTrailers } from "./modules/ui.js"
+import { createHeader, createFooter, movieReload, reloadTrailers, reloadPopularities, getMovieTrailers } from "./modules/ui.js"
 
 let apiKey = import.meta.env.VITE_API_KEY
 
 let header = document.querySelector('header')
+let footer = document.querySelector('footer')
 let currentMoviesContainer = document.querySelector('.now-playing .movie-container')
 let seeMore_btn = document.querySelector('.see_more')
 let newTrailersContainer = document.querySelector('.other-trailers')
@@ -20,6 +21,7 @@ let years = document.querySelectorAll('.popular-movies .years a')
 console.log(years)
 
 createHeader(header)
+createFooter(footer)
 
 axios.get(`https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1&api_key=${apiKey}`)
     .then(res => {

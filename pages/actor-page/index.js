@@ -1,10 +1,11 @@
 import axios from "axios"
-import { createHeader, movieReload } from "../../modules/ui.js"
+import { createHeader, createFooter, movieReload } from "../../modules/ui.js"
 
 let apiKey = import.meta.env.VITE_API_KEY
 let id = location.search.split('=').at(-1)
 
 let header = document.querySelector('header')
+let footer = document.querySelector('footer')
 let actorImg = document.querySelector('.actor-img img')
 let wayToActor = document.querySelector('.way-to-actor p span')
 let nameRu = document.querySelector('.name-ru')
@@ -26,6 +27,7 @@ let image_5 = document.querySelector('.image_5 img')
 let image_6 = document.querySelector('.image_6 img')
 
 createHeader(header)
+createFooter(footer)
 
 axios.get(`https://api.themoviedb.org/3/person/${id}?language=ru-RU&api_key=${apiKey}`)
     .then(res => {

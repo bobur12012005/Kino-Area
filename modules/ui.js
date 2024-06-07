@@ -1,5 +1,6 @@
 import axios from "axios"
 import "./ui-css/header.css"
+import "./ui-css/footer.css"
 import "./ui-css/movie.css"
 import "./ui-css/actor.css"
 
@@ -93,6 +94,59 @@ export function createHeader(place) {
     right.append(search_btn, login_btn)
     socialSites.append(vk, instagram, facebook, twitter)
     search_btn.append(search_icon)
+}
+
+export function createFooter(place) {
+    let footerTop = document.createElement('div')
+    let logoImg = document.createElement('img')
+    let footerBody = document.createElement('div')
+    let subscriptionText = document.createElement('span')
+    let subscriptionDescription = document.createElement('div')
+    let subscriptionDescription1 = document.createElement('span')
+    let subscriptionDescription2 = document.createElement('span')
+    let form = document.createElement('form')
+    let formTop = document.createElement('div')
+    let emailInput = document.createElement('input')
+    let subscribeButton = document.createElement('button')
+    let formBottom = document.createElement('div')
+    let checkbox = document.createElement('input')
+    let privacyPolicyText = document.createElement('p')
+    let privacyPolicyLink = document.createElement('a')
+    let footerBottom = document.createElement('span')
+    let forColor = document.createElement('div')
+
+    footerTop.classList.add('footer-top')
+    footerBody.classList.add('footer-body')
+    formTop.classList.add('form-top')
+    formBottom.classList.add('form-bottom')
+    footerBottom.classList.add('footer-bottom')
+    forColor.classList.add('for-color')
+    subscriptionDescription.classList.add('subscriptionDescription')
+
+    subscriptionText.innerHTML = 'Подпишитесь на E-mail рассылку'
+    subscriptionDescription1.innerHTML = 'Если хотите быть в курсе последних новостей и новинок кино -'
+    subscriptionDescription2.innerHTML = 'заполните форму ниже и оформите бесплатную E-mail рассылку!'
+    subscribeButton.innerHTML = 'Подписаться'
+    privacyPolicyText.innerHTML = 'Соглашаюсь на условия политики конфиденциальности'
+    privacyPolicyLink.innerHTML = 'политики конфиденциальности'
+    footerBottom.innerHTML = '2020 © Kinoarea.  Все права защищены'
+
+    emailInput.type = 'text'
+    checkbox.type = 'checkbox'
+
+    logoImg.src = '/logotype/logotype.svg'
+    emailInput.placeholder = 'Введите свой E-mail адрес'
+    privacyPolicyLink.href = '#'
+
+    place.append(forColor, footerBottom)
+    forColor.append(footerTop)
+    footerTop.append(logoImg, footerBody)
+    formBottom.append(checkbox, privacyPolicyText)
+    privacyPolicyText.append(privacyPolicyLink)
+    footerBody.append(subscriptionText, subscriptionDescription, form)
+    subscriptionDescription.append(subscriptionDescription1, subscriptionDescription2)
+    form.append(formTop, formBottom)
+    formTop.append(emailInput, subscribeButton)
 }
 
 export async function movieReload(arr, place) {

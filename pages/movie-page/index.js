@@ -1,5 +1,5 @@
 import axios from "axios"
-import { createHeader, reloadMainCharacters, getMovieTrailers } from "../../modules/ui.js"
+import { createHeader, createFooter, reloadMainCharacters, getMovieTrailers } from "../../modules/ui.js"
 
 let apiKey = import.meta.env.VITE_API_KEY
 
@@ -7,6 +7,7 @@ let id = location.search.split('=').at(-1)
 
 let body = document.body
 let header = document.querySelector('header')
+let footer = document.querySelector('footer')
 let movie_poster = document.querySelector('.movie-poster')
 let movie_title = document.querySelector('.movie-title')
 let description = document.querySelector('.description')
@@ -16,6 +17,7 @@ let trailerTitle = document.querySelector('.trailer-title')
 let mainCharacters = document.querySelector('.main-characters')
 
 createHeader(header)
+createFooter(footer)
 
 // axios.get()
 
